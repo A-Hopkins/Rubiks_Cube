@@ -3,5 +3,5 @@ package trainer.model;
 /**
  * @author Alex
  */
-public class Cube {
+public class Model3D {
 }

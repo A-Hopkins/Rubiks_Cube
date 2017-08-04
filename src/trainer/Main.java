@@ -1,19 +1,28 @@
 package trainer;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.scene.SceneAntialiasing;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * @author Alex
+ */
 public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		StackPane root = new StackPane();
+		Group sceneRoot = new Group();
 
 		primaryStage.setTitle("Rubik's Cube Trainer");
-		primaryStage.setScene(new Scene(root, 800, 700));
+
+		Scene scene = new Scene(sceneRoot, 600, 600, true, SceneAntialiasing.BALANCED);
+		scene.setFill(Color.BLACK);
+
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
