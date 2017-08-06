@@ -18,23 +18,32 @@ import javafx.scene.transform.Translate;
  *
  * @author Alex
  */
-public class ContentModel {
+public class ModelDisplay {
 
     private final Group root3D = new Group();
+
     private final PerspectiveCamera camera = new PerspectiveCamera(true);
+
     private final Rotate yUpRotate = new Rotate(180, 0, 0, 0, Rotate.X_AXIS); // y Up
     private final Rotate cameraLookXRotate = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
     private final Rotate cameraLookZRotate = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
+
     private final Translate cameraPosition = new Translate(0, 0, 0);
+
     private final Xform cameraXform = new Xform();
     private final Xform cameraXform2 = new Xform();
+
     private final AutoScalingGroup autoScalingGroup = new AutoScalingGroup(2);
+
     private final AmbientLight ambientLight = new AmbientLight(Color.WHITE);
     private final PointLight light1 = new PointLight(Color.WHITE);
+
     private final double paneW, paneH;
     private final double modifierFactor = 0.3;
+
     private SubScene subScene;
     private double dimModel = 100d;
+
     private final EventHandler<ScrollEvent> scrollEventHandler = event -> {
 
         if (event.getTouchCount() > 0) { // touch pad scroll
@@ -47,6 +56,7 @@ public class ContentModel {
             cameraPosition.setZ(z);
         }
     };
+
     private final EventHandler<ZoomEvent> zoomEventHandler = event -> {
 
         if (!Double.isNaN(event.getZoomFactor()) && event.getZoomFactor() > 0.8 && event.getZoomFactor() < 1.2) {
@@ -56,9 +66,11 @@ public class ContentModel {
             cameraPosition.setZ(z);
         }
     };
+
     private double mousePosX, mousePosY;
     private double mouseOldX, mouseOldY;
     private double mouseDeltaX, mouseDeltaY;
+
     private final EventHandler<MouseEvent> mouseEventHandler = event -> {
 
         double xFlip = -1.0, yFlip = 1.0; // yUp
@@ -92,7 +104,7 @@ public class ContentModel {
         }
     };
 
-    public ContentModel(double paneW, double paneH, double dimModel) {
+    ModelDisplay(double paneW, double paneH, double dimModel) {
 
         this.paneW = paneW;
         this.paneH = paneH;
@@ -134,9 +146,9 @@ public class ContentModel {
         root3D.getChildren().add(ambientLight);
         root3D.getChildren().add(light1);
 
-        light1.setTranslateX(dimModel * 0.1);
-        light1.setTranslateY(dimModel * 0.1);
-        light1.setTranslateZ(dimModel * 0.1);
+        light1.setTranslateX(dimModel * 0.5);
+        light1.setTranslateY(dimModel * 0.5);
+        light1.setTranslateZ(dimModel * 0.5);
     }
 
     private void setListeners(boolean addListeners) {
@@ -152,14 +164,11 @@ public class ContentModel {
         }
     }
 
-    /**
-     * Public methods
-     */
-    public SubScene getSubScene() {
+    SubScene getSubScene() {
         return subScene;
     }
 
-    public void setContent(Node content) {
+    void setContent(Node content) {
         autoScalingGroup.getChildren().add(content);
     }
 

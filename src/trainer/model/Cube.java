@@ -8,13 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Cube model
+ * Cube model and behavior
+ *
  * @author Alex
  */
 public class Cube {
 
     private final double dimCube;
-    private final ContentModel content;
+    private final ModelDisplay content;
     private Group cube = new Group();
 
     private Map<String, MeshView> mapMeshes = new HashMap<>();
@@ -35,7 +36,7 @@ public class Cube {
         /*
         Create content subscene, add cube, set camera and lights
         */
-        content = new ContentModel(800, 600, dimCube);
+        content = new ModelDisplay(800, 600, dimCube);
         content.setContent(cube);
 
     }
