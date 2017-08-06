@@ -1,16 +1,18 @@
 package trainer;
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import trainer.model.Cube;
 
 /**
  * @author Alex
  */
 public class Main extends Application {
+
+    private final BorderPane pane = new BorderPane();
 
     public static void main(String[] args) {
 
@@ -20,13 +22,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Group sceneRoot = new Group();
+        Cube cube = new Cube();
 
-        primaryStage.setTitle("Rubik's Cube Trainer");
+        final Scene scene = new Scene(pane, 880, 680, true);
+        pane.setCenter(cube.getSubScene());
 
-        Scene scene = new Scene(sceneRoot, 600, 600, true, SceneAntialiasing.BALANCED);
         scene.setFill(Color.BLACK);
 
+        primaryStage.setTitle("Rubik's Cube Trainer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
