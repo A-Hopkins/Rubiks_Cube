@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Cube model
  * @author Alex
  */
 public class Cube {

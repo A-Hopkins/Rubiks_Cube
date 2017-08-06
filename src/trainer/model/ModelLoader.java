@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Loads the models for the Rubik's cube
+ * Loads the models for the Rubik's cube using OpenJFX loads .obj files and associated .mtl files
  *
  * @author Alex
  */

@@ -16,7 +16,7 @@ import javafx.scene.transform.Translate;
  * Contains the 3D subscene and everything related to it: light, cameras, axis
  * Based on com.javafx.experiments.jfx3dviewer.ContentModel
  *
- * @author alex
+ * @author Alex
  */
 public class ContentModel {
 

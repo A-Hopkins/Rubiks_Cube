@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import trainer.model.Cube;
 
 /**
+ * Main file, runs the application
+ *
  * @author Alex
  */
 public class Main extends Application {
