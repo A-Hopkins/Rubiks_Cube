@@ -12,22 +12,22 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    public static void main(String[] args) {
 
-		Group sceneRoot = new Group();
+        launch(args);
+    }
 
-		primaryStage.setTitle("Rubik's Cube Trainer");
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
-		Scene scene = new Scene(sceneRoot, 600, 600, true, SceneAntialiasing.BALANCED);
-		scene.setFill(Color.BLACK);
+        Group sceneRoot = new Group();
 
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
+        primaryStage.setTitle("Rubik's Cube Trainer");
 
+        Scene scene = new Scene(sceneRoot, 600, 600, true, SceneAntialiasing.BALANCED);
+        scene.setFill(Color.BLACK);
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }
