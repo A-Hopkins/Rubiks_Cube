@@ -8,7 +8,8 @@ Current features list:
 - [x] Loads a rotatable Rubik's cube
 
 Planned features list:
--[ ] apply algorithms
--[ ] add a solve button that solves the cube
--[ ] Allow user to solve cube 1 algorithm at a time
+- [ ] Add user interface for interacting with the cube
+- [ ] apply algorithms
+- [ ] add a solve button that solves the cube
+- [ ] Allow user to solve cube 1 algorithm at a time
 
