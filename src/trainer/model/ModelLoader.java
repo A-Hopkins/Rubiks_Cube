@@ -3,6 +3,8 @@ package trainer.model;
 import com.javafx.experiments.importers.obj.ObjImporter;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.Rotate;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -42,12 +44,17 @@ public class ModelLoader {
             ObjImporter reader = new ObjImporter(getClass().getResource(OBJPATH).toExternalForm());
             meshes = reader.getMeshes();
 
+            Affine affineIni = new Affine();
+            affineIni.prepend(new Rotate(-90, Rotate.X_AXIS));
+            affineIni.prepend(new Rotate(90, Rotate.Z_AXIS));
+
             for (String s : meshes) {
 
                 MeshView cubiePart = reader.buildMeshView(s);
 
-                PhongMaterial material = (PhongMaterial) cubiePart.getMaterial();
+                cubiePart.getTransforms().add(affineIni);
 
+                PhongMaterial material = (PhongMaterial) cubiePart.getMaterial();
 
                 material.setSpecularPower(1);
                 cubiePart.setMaterial(material);

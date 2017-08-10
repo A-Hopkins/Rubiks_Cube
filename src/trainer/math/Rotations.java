@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Math and rotations of the model
+ *
  * @author Alex
  */
 public class Rotations {
@@ -45,7 +47,6 @@ public class Rotations {
         }
     }
 
-    /* copy tempCube data in cube */
     public void save() {
         for (int f = 0; f < 3; f++) {
             for (int l = 0; l < 3; l++) {
@@ -54,7 +55,6 @@ public class Rotations {
         }
     }
 
-    /* print 3D array as a flatten list of indexes in groups of 9 cubies (Front - Standing - Back) */
     public void printCube() {
         List<Integer> newArray = getCube();
         for (int i = 0; i < 27; i++) {
@@ -66,23 +66,13 @@ public class Rotations {
         System.out.println("");
     }
 
-    /*
-    This is the method to perform any rotation on the 3D array just by swapping indexes
-    - first index refers to faces F-S-B
-    - second index refers to faces U-E-D
-    - third index refers to faces L-M-R
-
-    For notation check http://en.wikipedia.org/wiki/Rubik%27s_Cube
-    For clockwise rotations Capital letters are used, for counter-clockwise rotation an "i" is
-    appended, instead of a ' or a lower letter.
-    */
-    public void turn(String rot) {
-        if (rot.contains("X") || rot.contains("Y") || rot.contains("Z")) {
+    public void turn(String rotate) {
+        if (rotate.contains("X") || rotate.contains("Y") || rotate.contains("Z")) {
             for (int z = 0; z < 3; z++) {
                 int t = 0;
                 for (int y = 2; y >= 0; --y) {
                     for (int x = 0; x < 3; x++) {
-                        switch (rot) {
+                        switch (rotate) {
                             case "X":
                                 tempCube[t][x][z] = cube[x][y][z];
                                 break;
@@ -110,7 +100,7 @@ public class Rotations {
             int t = 0;
             for (int y = 2; y >= 0; --y) {
                 for (int x = 0; x < 3; x++) {
-                    switch (rot) {
+                    switch (rotate) {
                         case "L":
                             tempCube[x][t][0] = cube[y][x][0];
                             break;

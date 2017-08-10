@@ -28,6 +28,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         final BorderPane pane = new BorderPane();
+        pane.setStyle("-fx-background-color: transparent");
+
         final Pane leftSpacer = new Pane();
         HBox.setHgrow(
                 leftSpacer,
@@ -38,33 +40,53 @@ public class Main extends Application {
                 rightSpacer,
                 Priority.SOMETIMES
         );
+
         // Cube
         Cube cube = new Cube();
-        pane.setCenter(cube.getSubScene());
 
         // UI
-        pane.setStyle("-fx-background-color: transparent");
-
-        // TODO: Add a rotation tracker display area
-
+        // TODO: Add scrambler
+        // TODO: Add button pressed tracker
         ToolBar toolBar = new ToolBar(
-                new Button("R"),
-                new Button("U"),
                 new Button("L"),
-                new Button("F"),
-                new Button("B"),
+                new Button("Li"),
+                new Button("R"),
+                new Button("Ri"),
+                new Button("U"),
+                new Button("Ui"),
                 new Button("D"),
+                new Button("Di"),
+                new Button("F"),
+                new Button("Fi"),
+                new Button("B"),
+                new Button("Bi"),
                 leftSpacer,
-                new Button("next algorithm"),
+                new Button("X"),
+                new Button("Xi"),
+                new Button("Y"),
+                new Button("Yi"),
+                new Button("Z"),
+                new Button("Zi"),
                 rightSpacer,
+                new Button("Scramble"),
+                new Button("Next Algorithm"),
                 new Button("Solve")
         );
 
-        toolBar.setStyle("-fx-background-color: transparent;");
+        toolBar.setStyle("-fx-background-color: transparent");
         pane.setBottom(toolBar);
 
+        pane.setCenter(cube.getSubScene());
 
-        // Scene
+        pane.getChildren().stream()
+                .filter(n -> (n instanceof ToolBar))
+                .forEach(tb -> ((ToolBar) tb).getItems().stream()
+                        .filter(n -> (n instanceof Button))
+                        .forEach(n -> ((Button) n).setOnAction(e -> cube.rotateFace(((Button) n).getText()))));
+        cube.isOnRotation().addListener((ov, b, b1) -> pane.getChildren().stream()
+                .filter(n -> (n instanceof ToolBar))
+                .forEach(tb -> tb.setDisable(b1)));
+
         final Scene scene = new Scene(pane, 880, 680, true);
         scene.setFill(Color.BLACK);
         primaryStage.setTitle("Rubik's Cube Trainer");
