@@ -1,6 +1,7 @@
 package trainer;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
@@ -12,12 +13,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import trainer.model.Cube;
 
+import java.util.Objects;
+
 /**
  * Main file, runs the application
  *
  * @author Alex
  */
 public class Main extends Application {
+
+    private final Button scrambleButton = new Button("Scramble");
 
     public static void main(String[] args) {
 
@@ -45,7 +50,6 @@ public class Main extends Application {
         Cube cube = new Cube();
 
         // UI
-        // TODO: Add scrambler
         // TODO: Add button pressed tracker
         ToolBar toolBar = new ToolBar(
                 new Button("L"),
@@ -68,7 +72,7 @@ public class Main extends Application {
                 new Button("Z"),
                 new Button("Zi"),
                 rightSpacer,
-                new Button("Scramble"),
+                scrambleButton,
                 new Button("Next Algorithm"),
                 new Button("Solve")
         );
@@ -80,9 +84,25 @@ public class Main extends Application {
 
         pane.getChildren().stream()
                 .filter(n -> (n instanceof ToolBar))
-                .forEach(tb -> ((ToolBar) tb).getItems().stream()
-                        .filter(n -> (n instanceof Button))
-                        .forEach(n -> ((Button) n).setOnAction(e -> cube.rotateFace(((Button) n).getText()))));
+                .forEach(tb -> {
+
+                    for (Node n : ((ToolBar) tb).getItems()) {
+
+                        if ((n instanceof Button)) {
+
+                            ((Button) n).setOnAction(e -> {
+
+                                if (Objects.equals(((Button) n).getText(), "Scramble")) {
+                                    cube.scramble();
+
+                                } else {
+                                    cube.rotateFace(((Button) n).getText());
+                                }
+                            });
+                        }
+                    }
+                });
+
         cube.isOnRotation().addListener((ov, b, b1) -> pane.getChildren().stream()
                 .filter(n -> (n instanceof ToolBar))
                 .forEach(tb -> tb.setDisable(b1)));
@@ -93,4 +113,5 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }

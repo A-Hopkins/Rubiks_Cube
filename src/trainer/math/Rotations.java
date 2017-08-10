@@ -47,7 +47,7 @@ public class Rotations {
         }
     }
 
-    public void save() {
+    private void save() {
         for (int f = 0; f < 3; f++) {
             for (int l = 0; l < 3; l++) {
                 System.arraycopy(tempCube[f][l], 0, cube[f][l], 0, 3);

@@ -20,17 +20,16 @@ import java.util.logging.Logger;
  */
 
 
-public class ModelLoader {
+class ModelLoader {
 
     private static final Logger LOGGER = Logger.getLogger(ModelLoader.class.getName());
     private static final String OBJPATH = "/Cube.obj";
-    private Map<String, MeshView> mapMeshes = new HashMap<>();
-    private Set<String> meshes;
+    private final Map<String, MeshView> mapMeshes = new HashMap<>();
 
     /**
      * Custom constructor calling the importObj method to import the .obj and .mtl files using OpenJFX
      */
-    public ModelLoader() {
+    ModelLoader() {
         importObj();
     }
 
@@ -42,7 +41,7 @@ public class ModelLoader {
         try {
 
             ObjImporter reader = new ObjImporter(getClass().getResource(OBJPATH).toExternalForm());
-            meshes = reader.getMeshes();
+            Set<String> meshes = reader.getMeshes();
 
             Affine affineIni = new Affine();
             affineIni.prepend(new Rotate(-90, Rotate.X_AXIS));
@@ -70,7 +69,7 @@ public class ModelLoader {
         }
     }
 
-    public Map<String, MeshView> getMapMeshes() {
+    Map<String, MeshView> getMapMeshes() {
         return mapMeshes;
     }
 }

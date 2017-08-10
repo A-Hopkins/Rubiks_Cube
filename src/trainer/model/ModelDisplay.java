@@ -18,7 +18,7 @@ import javafx.scene.transform.Translate;
  *
  * @author Alex
  */
-public class ModelDisplay {
+class ModelDisplay {
 
     private final Group root3D = new Group();
 
@@ -120,10 +120,10 @@ public class ModelDisplay {
      * double paneHeight - the height of the pane
      * double dimModel - Dimension of the model loaded
      */
-    ModelDisplay(double paneWidth, double paneHeight, double dimModel) {
+    ModelDisplay(double dimModel) {
 
-        this.paneW = paneWidth;
-        this.paneH = paneHeight;
+        this.paneW = (double) 800;
+        this.paneH = (double) 600;
         this.dimModel = dimModel;
         buildCamera();
         buildSubScene();
