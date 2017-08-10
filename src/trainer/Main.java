@@ -2,7 +2,12 @@ package trainer;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import trainer.model.Cube;
@@ -14,8 +19,6 @@ import trainer.model.Cube;
  */
 public class Main extends Application {
 
-    private final BorderPane pane = new BorderPane();
-
     public static void main(String[] args) {
 
         launch(args);
@@ -24,13 +27,46 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        final BorderPane pane = new BorderPane();
+        final Pane leftSpacer = new Pane();
+        HBox.setHgrow(
+                leftSpacer,
+                Priority.SOMETIMES
+        );
+        final Pane rightSpacer = new Pane();
+        HBox.setHgrow(
+                rightSpacer,
+                Priority.SOMETIMES
+        );
+        // Cube
         Cube cube = new Cube();
-
-        final Scene scene = new Scene(pane, 880, 680, true);
         pane.setCenter(cube.getSubScene());
 
-        scene.setFill(Color.BLACK);
+        // UI
+        pane.setStyle("-fx-background-color: transparent");
 
+        // TODO: Add a rotation tracker display area
+
+        ToolBar toolBar = new ToolBar(
+                new Button("R"),
+                new Button("U"),
+                new Button("L"),
+                new Button("F"),
+                new Button("B"),
+                new Button("D"),
+                leftSpacer,
+                new Button("next algorithm"),
+                rightSpacer,
+                new Button("Solve")
+        );
+
+        toolBar.setStyle("-fx-background-color: transparent;");
+        pane.setBottom(toolBar);
+
+
+        // Scene
+        final Scene scene = new Scene(pane, 880, 680, true);
+        scene.setFill(Color.BLACK);
         primaryStage.setTitle("Rubik's Cube Trainer");
         primaryStage.setScene(scene);
         primaryStage.show();

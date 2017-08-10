@@ -20,11 +20,11 @@ public class Cube {
 
     private Map<String, MeshView> mapMeshes = new HashMap<>();
 
+    /**
+     * Cube constructor loads the models from {@link ModelLoader} then sets the scene for the cube
+     */
     public Cube() {
 
-        /**
-         Import Rubik's Cube model and arrows
-         */
         ModelLoader model = new ModelLoader();
 
         mapMeshes = model.getMapMeshes();
@@ -33,9 +33,6 @@ public class Cube {
 
         dimCube = cube.getBoundsInParent().getWidth();
 
-        /*
-        Create content subscene, add cube, set camera and lights
-        */
         content = new ModelDisplay(800, 600, dimCube);
         content.setContent(cube);
 

@@ -44,6 +44,9 @@ public class ModelDisplay {
     private SubScene subScene;
     private double dimModel = 100d;
 
+    /**
+     * Event handler to connect the scroll wheel with moving the model
+     */
     private final EventHandler<ScrollEvent> scrollEventHandler = event -> {
 
         if (event.getTouchCount() > 0) { // touch pad scroll
@@ -57,6 +60,9 @@ public class ModelDisplay {
         }
     };
 
+    /**
+     * Event handler to connect a zoom event with zooming into or away from the model
+     */
     private final EventHandler<ZoomEvent> zoomEventHandler = event -> {
 
         if (!Double.isNaN(event.getZoomFactor()) && event.getZoomFactor() > 0.8 && event.getZoomFactor() < 1.2) {
@@ -71,6 +77,9 @@ public class ModelDisplay {
     private double mouseOldX, mouseOldY;
     private double mouseDeltaX, mouseDeltaY;
 
+    /**
+     * Event handler to connect a dragging motion to movement of the model
+     */
     private final EventHandler<MouseEvent> mouseEventHandler = event -> {
 
         double xFlip = -1.0, yFlip = 1.0; // yUp
@@ -104,16 +113,26 @@ public class ModelDisplay {
         }
     };
 
-    ModelDisplay(double paneW, double paneH, double dimModel) {
+    /**
+     * A three argument constructor
+     * <p>
+     * double paneWidth - the width of the pane
+     * double paneHeight - the height of the pane
+     * double dimModel - Dimension of the model loaded
+     */
+    ModelDisplay(double paneWidth, double paneHeight, double dimModel) {
 
-        this.paneW = paneW;
-        this.paneH = paneH;
+        this.paneW = paneWidth;
+        this.paneH = paneHeight;
         this.dimModel = dimModel;
         buildCamera();
         buildSubScene();
         addLights();
     }
 
+    /**
+     * Camera builder
+     */
     private void buildCamera() {
 
         camera.setNearClip(1.0);
@@ -131,6 +150,9 @@ public class ModelDisplay {
 
     }
 
+    /**
+     * Sub scene builder
+     */
     private void buildSubScene() {
 
         root3D.getChildren().add(autoScalingGroup);
@@ -141,6 +163,9 @@ public class ModelDisplay {
         setListeners(true);
     }
 
+    /**
+     * Lights builder
+     */
     private void addLights() {
 
         root3D.getChildren().add(ambientLight);

@@ -25,13 +25,19 @@ public class ModelLoader {
     private Map<String, MeshView> mapMeshes = new HashMap<>();
     private Set<String> meshes;
 
+    /**
+     * Custom constructor calling the importObj method to import the .obj and .mtl files using OpenJFX
+     */
     public ModelLoader() {
         importObj();
     }
 
+    /**
+     * imports the .obj files and .mtl files then creates a hashmap with the mesh values of each cubie
+     */
     private void importObj() {
 
-		try {
+        try {
 
             ObjImporter reader = new ObjImporter(getClass().getResource(OBJPATH).toExternalForm());
             meshes = reader.getMeshes();
@@ -55,7 +61,7 @@ public class ModelLoader {
 
             LOGGER.log(Level.SEVERE, ex.toString(), ex);
         }
-	}
+    }
 
     public Map<String, MeshView> getMapMeshes() {
         return mapMeshes;
